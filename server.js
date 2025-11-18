@@ -159,3 +159,12 @@ app.post('/cliq/webhook', async (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
+app.post('/cliq/webhook', async (req, res) => {
+    // your code to process PDF, summarize, generate tasks
+    res.status(200).send('ok'); // acknowledge Zoho
+});
+// Root route just to check server is running
+app.get("/", (req, res) => {
+  res.send("Server is Live on Render!");
+});
+
