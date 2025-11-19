@@ -1,35 +1,27 @@
 import express from "express";
 import dotenv from "dotenv";
-import OpenAI from "openai";
+import OpenAI from "openai"; // keep if you actually use OpenAI
 
 dotenv.config();
 const app = express();
 app.use(express.json());
 
-// root / health check
+// Health / root route (this fixes "Cannot GET /")
 app.get("/", (req, res) => {
-  res.send("Cliq Smart Bot is running. POST to /cliq/webhook for Zoho.");
+  res.send("Cliq Smart Bot — running. Webhook: POST /cliq/webhook");
 });
 
-// initialize OpenAI client
-const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
-
-// Zoho webhook
+// Example webhook (keep your real logic here)
 app.post("/cliq/webhook", async (req, res) => {
   try {
-    const userMsg = (req.body.message) ? req.body.message : "Hello";
-    const completion = await client.chat.completions.create({
-      model: "gpt-4o-mini",
-      messages: [{ role: "user", content: userMsg }]
-    });
-
-    const reply = completion.choices?.[0]?.message?.content ?? "Sorry, no reply.";
-    return res.json({ text: reply });
+    // minimal reply — replace with your logic
+    return res.json({ text: "Webhook received" });
   } catch (err) {
     console.error("Webhook error:", err);
     return res.status(500).json({ text: "Internal error" });
   }
 });
 
+// Use Render's port env var
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
