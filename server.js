@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import OpenAI from "openai"; // keep if you actually use OpenAI
+const PORT = process.env.PORT || 3000;
 
 dotenv.config();
 const app = express();
@@ -23,7 +24,7 @@ app.post("/cliq/webhook", async (req, res) => {
 });
 
 // Use Render's port env var
-const P = process.env.PORT || 3000;
+const Port= process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 const port = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
