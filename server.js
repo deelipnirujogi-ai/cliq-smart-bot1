@@ -23,5 +23,7 @@ app.post("/cliq/webhook", async (req, res) => {
 });
 
 // Use Render's port env var
-const PORT = process.env.PORT || 3000;
+const P = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+const port = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
